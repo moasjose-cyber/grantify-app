@@ -12,6 +12,12 @@ export interface Subvention {
   deadline: string;
   entity: string;
   status: "open" | "closing-soon" | "closed";
+  codigoBNS?: string;
+  organoConvocante?: string;
+  regionImpacto?: string;
+  tipoBeneficiario?: string;
+  saNumber?: string;
+  bdnsUrl?: string;
 }
 
 interface SubventionCardProps {
@@ -71,8 +77,9 @@ export const SubventionCard = ({ subvention }: SubventionCardProps) => {
         <Button 
           className="w-full font-semibold" 
           disabled={subvention.status === "closed"}
+          onClick={() => subvention.bdnsUrl && window.open(subvention.bdnsUrl, '_blank')}
         >
-          {subvention.status === "closed" ? "Cerrada" : "Ver detalles"}
+          {subvention.status === "closed" ? "Cerrada" : "Ver en BDNS"}
         </Button>
       </CardFooter>
     </Card>
